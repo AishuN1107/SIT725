@@ -1,0 +1,21 @@
+{
+  "name": "bootstrapping-express-app",
+  "version": "1.0.0",
+  "description": "Bootstrapping Express App",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js"
+  },
+  "keywords": [
+    "\"Nodejs\"",
+    "\"Express\"",
+    "\"HTML\"",
+    "\"CSS\"",
+    "\"JS\""
+  ],
+  "author": "Aishwarya Naidu",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
