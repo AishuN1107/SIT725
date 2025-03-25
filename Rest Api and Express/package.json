@@ -1,0 +1,24 @@
+{
+  "name": "week2",
+  "version": "1.0.0",
+  "description": "week 2",
+  "homepage": "https://github.com/AishuN1107/Week2#readme",
+  "bugs": {
+    "url": "https://github.com/AishuN1107/Week2/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AishuN1107/Week2.git"
+  },
+  "license": "MIT",
+  "author": "Aishwarya",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "json": "^11.0.0"
+  }
+}
