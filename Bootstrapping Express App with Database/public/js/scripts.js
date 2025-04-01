@@ -78,4 +78,3 @@ $(document).ready(function () {
     // Initial rendering of cards
     addCards(travelPlaces);
 });
-

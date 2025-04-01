@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 
 // Connect to MongoDB
 mongoose.connect("mongodb://localhost:27017/travelBlog", { useNewUrlParser: true, useUnifiedTopology: true })
@@ -53,5 +53,5 @@ app.post("/api/travel-places", async (req, res) => {
 
 // Start the server
 app.listen(port, () => {
-    console.log(`Travel Blog server running at http://localhost:${port}`);
+    console.log(`Travel Blog server listening at http://localhost:${port}`);
 });
