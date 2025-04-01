@@ -1,0 +1,17 @@
+{
+  "name": "add-a-database",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "author": "Aishwarya Naidu",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.13.1"
+  }
+}
