@@ -2,9 +2,9 @@ $(document).ready(function () {
     $('.modal').modal();
 
     let travelPlaces = [
-        { location: "Paris, France", image: "public/images/paris.jpg", description: "The city of love and lights!" },
-        { location: "Kyoto, Japan", image: "public/images/kyoto.jpg", description: "Beautiful temples and cherry blossoms." },
-        { location: "Maui, Hawaii", image: "public/images/Maui.png", description: "Stunning beaches and tropical paradise." }
+        { location: "Paris, France", image: "images/paris.jpg", description: "The city of love and lights!" },
+        { location: "Kyoto, Japan", image: "images/kyoto.jpg", description: "Beautiful temples and cherry blossoms." },
+        { location: "Maui, Hawaii", image: "images/Maui.png", description: "Stunning beaches and tropical paradise." }
     ];
 
     // Add cards to the page
