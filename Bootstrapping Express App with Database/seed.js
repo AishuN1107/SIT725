@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-// Define Schema and Model directly in this file
 const placeSchema = new mongoose.Schema({
   location: String,
   image: String,
@@ -9,7 +8,6 @@ const placeSchema = new mongoose.Schema({
 
 const Place = mongoose.model("Place", placeSchema);
 
-// Connect to MongoDB
 mongoose.connect("mongodb://localhost:27017/travelBlogDB", {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -23,12 +21,11 @@ const samplePlaces = [
   { location: "Maui, Hawaii", image: "images/Maui.png", description: "Stunning beaches and tropical paradise." }
 ];
 
-// Ensure database connection is established before inserting
 mongoose.connection.once("open", async () => {
   try {
     await Place.insertMany(samplePlaces);
     console.log("Sample places added!");
-    mongoose.connection.close(); // Close connection after inserting
+    mongoose.connection.close(); 
   } catch (error) {
     console.log("Insert Error:", error);
   }

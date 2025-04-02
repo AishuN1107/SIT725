@@ -1,7 +1,6 @@
 $(document).ready(function(){
     $('.modal').modal();
 
-    // Function to get places from the server
     const getPlaces = () => {
         $.get('/api/places', (response) => {
             if (response.statusCode === 200) {
@@ -36,7 +35,6 @@ $(document).ready(function(){
             description: $("#description").val()
         };
         
-        // Send data to the server
         $.post('/api/places', newPlace, (response) => {
             if (response.statusCode === 201) {
                 getPlaces(); // Refresh list
@@ -45,6 +43,6 @@ $(document).ready(function(){
             }
         });
     });
-
-    getPlaces(); // Load places on page load
+    
+    getPlaces(); 
 });

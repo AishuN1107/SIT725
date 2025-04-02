@@ -1,15 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
-
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Middleware
 app.use(express.static(__dirname + "/public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Connect to MongoDB
 mongoose.connect("mongodb://localhost:27017/travelBlogDB", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -19,7 +16,6 @@ mongoose.connection.on("connected", () => {
   console.log("Connected to MongoDB!");
 });
 
-// Define Schema
 const PlaceSchema = new mongoose.Schema({
   location: String,
   image: String,
@@ -28,7 +24,6 @@ const PlaceSchema = new mongoose.Schema({
 
 const Place = mongoose.model("Place", PlaceSchema);
 
-// API Endpoints
 app.get("/api/places", async (req, res) => {
   try {
     const places = await Place.find({});
@@ -48,7 +43,6 @@ app.post("/api/places", async (req, res) => {
   }
 });
 
-// Start server
 app.listen(port, () => {
   console.log(`Travel Blog is running at http://localhost:${port}`);
 });
