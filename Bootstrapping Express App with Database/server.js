@@ -1,57 +1,54 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
+
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
+
+// Middleware
+app.use(express.static(__dirname + "/public"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 // Connect to MongoDB
-mongoose.connect("mongodb://localhost:27017/travelBlog", { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log("MongoDB connected"))
-    .catch(err => console.error("MongoDB connection error:", err));
-
-// Middleware to parse JSON bodies
-app.use(bodyParser.json());
-app.use(express.static(__dirname + "/public"));
-
-// Define a schema and model for Travel Place
-const travelPlaceSchema = new mongoose.Schema({
-    location: String,
-    image: String,
-    description: String
+mongoose.connect("mongodb://localhost:27017/travelBlogDB", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
-const TravelPlace = mongoose.model("TravelPlace", travelPlaceSchema);
-
-// API route to get all travel places
-app.get("/api/travel-places", async (req, res) => {
-    try {
-        const places = await TravelPlace.find();
-        res.json({ statusCode: 200, data: places });
-    } catch (err) {
-        console.error("Error fetching places:", err);
-        res.status(500).json({ statusCode: 500, message: "Error fetching places" });
-    }
+mongoose.connection.on("connected", () => {
+  console.log("Connected to MongoDB!");
 });
 
-// API route to add a new travel place
-app.post("/api/travel-places", async (req, res) => {
-    const { location, image, description } = req.body;
-
-    if (!location || !image || !description) {
-        return res.status(400).json({ statusCode: 400, message: "All fields are required" });
-    }
-
-    try {
-        const newPlace = new TravelPlace({ location, image, description });
-        await newPlace.save();
-        res.status(201).json({ statusCode: 201, data: newPlace });
-    } catch (err) {
-        console.error("Error adding new place:", err);
-        res.status(500).json({ statusCode: 500, message: "Error adding new place" });
-    }
+// Define Schema
+const PlaceSchema = new mongoose.Schema({
+  location: String,
+  image: String,
+  description: String,
 });
 
-// Start the server
+const Place = mongoose.model("Place", PlaceSchema);
+
+// API Endpoints
+app.get("/api/places", async (req, res) => {
+  try {
+    const places = await Place.find({});
+    res.json({ statusCode: 200, data: places, message: "Success" });
+  } catch (err) {
+    res.status(500).json({ statusCode: 500, message: "Database error" });
+  }
+});
+
+app.post("/api/places", async (req, res) => {
+  try {
+    const newPlace = new Place(req.body);
+    await newPlace.save();
+    res.json({ statusCode: 201, message: "Place added successfully" });
+  } catch (err) {
+    res.status(500).json({ statusCode: 500, message: "Error saving place" });
+  }
+});
+
+// Start server
 app.listen(port, () => {
-    console.log(`Travel Blog server listening at http://localhost:${port}`);
+  console.log(`Travel Blog is running at http://localhost:${port}`);
 });
