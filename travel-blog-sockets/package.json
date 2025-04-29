@@ -1,0 +1,21 @@
+{
+  "name": "travel-blog-sockets",
+  "version": "1.0.0",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.14.0",
+    "socket": "^0.14.151",
+    "socket.io": "^4.8.1"
+  }
+}
